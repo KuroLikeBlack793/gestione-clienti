@@ -4,7 +4,7 @@ const STORAGE_KEY = "magazzino_consegne_v1";
 let clienti = caricadati();
 let ordinamentoAscendente = true;
 let clienteInModificaId = null;
-let zonaFiltroSelezionata = "TUTTE"; // Stato filtro zona attivo
+let zonaFiltroSelezionata = "TUTTE";
 
 document.addEventListener("DOMContentLoaded", () => {
     render();
@@ -59,7 +59,7 @@ function toggleOrdinamento() {
     render();
 }
 
-/* --- GESTIONE MODIFICA CLIENTE --- */
+/* --- MODIFICA CLIENTE --- */
 
 function apriModifica(id) {
     const cliente = clienti.find(c => c.id === id);
@@ -72,7 +72,6 @@ function apriModifica(id) {
     const modal = document.getElementById("modalEdit");
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
-    document.getElementById("editNomeCliente").focus();
 }
 
 function chiudiModifica() {
@@ -80,6 +79,7 @@ function chiudiModifica() {
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
     clienteInModificaId = null;
+    if (document.activeElement) document.activeElement.blur();
 }
 
 function handleEditSubmit(event) {
@@ -94,7 +94,7 @@ function handleEditSubmit(event) {
     const zonaChiave = generaChiave(zonaGrezza);
 
     if (!nomeChiave || !zonaChiave) {
-        mostraToast("⚠️ Nome e zona non possono essere vuoti!", "warning");
+        mostraToast("⚠️ Nome e zona obbligatori!", "warning");
         return;
     }
 
@@ -105,7 +105,7 @@ function handleEditSubmit(event) {
     );
 
     if (duplicato) {
-        mostraToast(`⛔ Un altro cliente è già registrato per "${pulisciTesto(zonaGrezza)}"!`, "danger");
+        mostraToast(`⛔ Già presente per "${pulisciTesto(zonaGrezza)}"!`, "danger");
         return;
     }
 
@@ -124,7 +124,7 @@ function handleEditSubmit(event) {
     salvaDati();
     render();
     chiudiModifica();
-    mostraToast("✏️ Cliente aggiornato con successo!", "success");
+    mostraToast("✏️ Cliente aggiornato!", "success");
 }
 
 /* --- INSERIMENTO ED ELIMINAZIONE --- */
@@ -134,6 +134,7 @@ function handleFormSubmit(event) {
 
     const nomeInput = document.getElementById("nomeCliente");
     const zonaInput = document.getElementById("zonaCliente");
+    const filtroRicercaInput = document.getElementById("filtroRicerca");
 
     const nomeGrezzo = nomeInput.value;
     const zonaGrezza = zonaInput.value;
@@ -142,18 +143,15 @@ function handleFormSubmit(event) {
     const zonaChiave = generaChiave(zonaGrezza);
 
     if (!nomeChiave && !zonaChiave) {
-        mostraToast("⚠️ Inserisci sia il nome cliente che la zona!", "warning");
-        nomeInput.focus();
+        mostraToast("⚠️ Inserisci nome cliente e zona!", "warning");
         return;
     }
     if (!nomeChiave) {
         mostraToast("⚠️ Il nome del cliente è obbligatorio!", "warning");
-        nomeInput.focus();
         return;
     }
     if (!zonaChiave) {
         mostraToast("⚠️ La zona di consegna è obbligatoria!", "warning");
-        zonaInput.focus();
         return;
     }
 
@@ -163,7 +161,7 @@ function handleFormSubmit(event) {
     );
 
     if (giaEsistente) {
-        mostraToast(`⛔ "${pulisciTesto(nomeGrezzo)}" è già registrato per "${pulisciTesto(zonaGrezza)}"!`, "danger");
+        mostraToast(`⛔ "${pulisciTesto(nomeGrezzo)}" già inserito in "${pulisciTesto(zonaGrezza)}"!`, "danger");
         return;
     }
 
@@ -176,13 +174,18 @@ function handleFormSubmit(event) {
 
     clienti.push(nuovoCliente);
     salvaDati();
+
+    // Reset del filtro per mostrare subito il nuovo cliente nella lista
+    zonaFiltroSelezionata = "TUTTE";
+    if (filtroRicercaInput) filtroRicercaInput.value = "";
+
     render();
+    mostraToast(`✅ Cliente salvato!`, "success");
 
-    mostraToast(`✅ Cliente "${nuovoCliente.nome}" salvato!`, "success");
-
+    // Reset campi e chiusura tastiera mobile
     nomeInput.value = "";
     zonaInput.value = "";
-    nomeInput.focus();
+    if (document.activeElement) document.activeElement.blur();
 }
 
 function eliminaCliente(id) {
@@ -216,7 +219,6 @@ function renderChips() {
 
     if (clienti.length === 0) return;
 
-    // Estrae le zone uniche mantenendo la formattazione originale
     const zoneUnicheMap = new Map();
     clienti.forEach(c => {
         const chiave = generaChiave(c.zona);
@@ -227,7 +229,6 @@ function renderChips() {
 
     const zoneUniche = Array.from(zoneUnicheMap.values()).sort((a, b) => a.localeCompare(b, "it"));
 
-    // Chip "TUTTE"
     const chipTutte = document.createElement("button");
     chipTutte.type = "button";
     chipTutte.className = `chip ${zonaFiltroSelezionata === "TUTTE" ? "active" : ""}`;
@@ -235,7 +236,6 @@ function renderChips() {
     chipTutte.onclick = () => selezionaFiltroZona("TUTTE");
     container.appendChild(chipTutte);
 
-    // Chip per ogni singola zona
     zoneUniche.forEach(zona => {
         const chiaveZona = generaChiave(zona);
         const conteggio = clienti.filter(c => generaChiave(c.zona) === chiaveZona).length;
@@ -254,28 +254,25 @@ function render() {
     const emptyStateElem = document.getElementById("emptyState");
     const counterElem = document.getElementById("counter");
     const btnSort = document.getElementById("btnSort");
-    const filtroChiave = generaChiave(document.getElementById("filtroRicerca").value);
+    const filtroRicercaElem = document.getElementById("filtroRicerca");
+    const filtroChiave = filtroRicercaElem ? generaChiave(filtroRicercaElem.value) : "";
 
     renderChips();
-
     listaElem.innerHTML = "";
 
     if (btnSort) {
         btnSort.textContent = ordinamentoAscendente ? "A ➔ Z" : "Z ➔ A";
     }
 
-    // 1. Filtro per testo cercato
     let filtrati = clienti.filter(c =>
         generaChiave(c.nome).includes(filtroChiave) ||
         generaChiave(c.zona).includes(filtroChiave)
     );
 
-    // 2. Filtro rapido per Chip Zona (se diverso da "TUTTE")
     if (zonaFiltroSelezionata !== "TUTTE") {
         filtrati = filtrati.filter(c => generaChiave(c.zona) === zonaFiltroSelezionata);
     }
 
-    // 3. Ordinamento Alfabetico
     filtrati.sort((a, b) => {
         const confronto = a.nome.localeCompare(b.nome, "it", { sensitivity: "base" });
         return ordinamentoAscendente ? confronto : -confronto;

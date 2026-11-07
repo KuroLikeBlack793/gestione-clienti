@@ -1,33 +1,18 @@
 :root {
-    /* Tavolozza Brand & Dark Theme */
     --bg-deep-night: #0a0f1d;
-    /* Blu notte profondo per lo sfondo principale */
     --surface-night: #141c2e;
-    /* Blu notte per le card e l'header */
     --border-night: #24304a;
-    /* Bordi netti e definiti (Flat Design) */
     --input-bg: #090d1a;
-    /* Sfondo campi di testo */
-
-    /* Colore Aziendale (Giallo Verdastro / Chartreuse Scuro Elegante) */
     --brand-lime: #97c41e;
     --brand-lime-hover: #83ab17;
     --brand-lime-text: #0a0f1d;
-    /* Testo scuro su sfondo giallo/verde per massimo contrasto */
-
-    /* Testi e Indicatori */
     --text-primary: #ffffff;
-    /* Bianco puro per i titoli e i clienti */
     --text-muted: #94a3b8;
-    /* Grigio bluastro per etichette secondarie */
-
-    /* Stato di Eliminazione / Pericolo */
     --danger-bg: #271217;
     --danger-border: #6b1d24;
     --danger-text: #f87171;
     --danger-hover-bg: #ef4444;
     --danger-hover-text: #ffffff;
-
     --border-radius: 8px;
 }
 
@@ -45,253 +30,7 @@ body {
     padding-bottom: 24px;
 }
 
-/* Header dell'App Moderno & Brandizzato */
-.app-header {
-    background-color: var(--surface-night);
-    border-bottom: 2px solid var(--brand-lime);
-    padding: 14px 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* Badge dell'icona Flat */
-.header-icon {
-    font-size: 1.4rem;
-    background-color: var(--bg-deep-night);
-    border: 1px solid var(--border-night);
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--border-radius);
-    flex-shrink: 0;
-}
-
-.header-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.header-brand h1 {
-    font-size: 1.15rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    line-height: 1.1;
-}
-
-/* Evidenziatore con colore aziendale */
-.header-brand h1 .highlight {
-    color: var(--brand-lime);
-}
-
-.header-subtitle {
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-top: 3px;
-}
-
-.app-header h1 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--text-primary);
-}
-
-.app-container {
-    max-width: 500px;
-    margin: 16px auto;
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* Card Flat in Blu Notte */
-.card {
-    background: var(--surface-night);
-    border: 1px solid var(--border-night);
-    border-radius: var(--border-radius);
-    padding: 18px;
-    box-shadow: none;
-    /* Stile Flat rigoroso */
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-}
-
-h2 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--brand-lime);
-    /* Richiamo al brand sui titoli delle sezioni */
-}
-
-.form-group {
-    margin-bottom: 14px;
-}
-
-label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-}
-
-/* Input di Testo */
-input {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--input-bg);
-    border: 1px solid var(--border-night);
-    border-radius: var(--border-radius);
-    color: var(--text-primary);
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.15s ease;
-}
-
-input:focus {
-    border-color: var(--brand-lime);
-    /* Focus visibile col colore aziendale */
-}
-
-input::placeholder {
-    color: #475569;
-}
-
-/* Pulsante Principale Aziendale (Giallo Verdastro) */
-.btn {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: var(--border-radius);
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: background-color 0.15s ease;
-}
-
-.btn-primary {
-    background-color: var(--brand-lime);
-    color: var(--brand-lime-text);
-}
-
-.btn-primary:active {
-    background-color: var(--brand-lime-hover);
-}
-
-/* Pulsante Elimina */
-.btn-danger {
-    background-color: var(--danger-bg);
-    color: var(--danger-text);
-    border: 1px solid var(--danger-border);
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    width: auto;
-}
-
-.btn-danger:active {
-    background-color: var(--danger-hover-bg);
-    color: var(--danger-hover-text);
-}
-
-/* Badge Contatore Clienti */
-.badge {
-    background-color: var(--bg-deep-night);
-    color: var(--brand-lime);
-    border: 1px solid var(--border-night);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-/* Elenco Clienti */
-.clienti-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.cliente-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 14px;
-    background-color: var(--input-bg);
-    border: 1px solid var(--border-night);
-    border-radius: var(--border-radius);
-}
-
-.cliente-nome {
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: var(--text-primary);
-}
-
-.cliente-zona {
-    font-size: 0.85rem;
-    color: var(--brand-lime);
-    margin-top: 4px;
-    font-weight: 600;
-}
-
-.empty-state {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    padding: 16px 0;
-    display: none;
-}
-
-/* Pulsante Ordinamento */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-sort {
-    background-color: var(--bg-deep-night);
-    color: var(--brand-lime);
-    border: 1px solid var(--border-night);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-}
-
-.btn-sort:active {
-    background-color: var(--border-night);
-}
-
-/* Contenitore Toast Fluttuante */
+/* Toast Notifiche Fluttuanti */
 .toast-container {
     position: fixed;
     top: 16px;
@@ -306,7 +45,6 @@ input::placeholder {
     pointer-events: none;
 }
 
-/* Elemento Toast Singolo */
 .toast {
     padding: 12px 16px;
     border-radius: var(--border-radius);
@@ -320,7 +58,6 @@ input::placeholder {
     animation: slideDown 0.2s ease-out forwards;
 }
 
-/* Varianti Toast */
 .toast-danger {
     background-color: var(--danger-bg);
     color: var(--danger-text);
@@ -351,73 +88,7 @@ input::placeholder {
     }
 }
 
-/* Pulsanti Gestione Dati e Backup */
-.backup-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.btn-secondary {
-    background-color: var(--input-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border-night);
-    text-align: center;
-}
-
-.btn-secondary:active {
-    background-color: var(--border-night);
-    color: var(--brand-lime);
-}
-
-.file-input-label {
-    display: block;
-    cursor: pointer;
-}
-
-/* Feedback visivo e layout riga cliente */
-.cliente-info-clickable {
-    flex-grow: 1;
-    cursor: pointer;
-    padding: 6px 12px 6px 6px;
-    margin-right: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: var(--border-radius);
-    transition: background-color 0.15s ease;
-}
-
-/* Feedback tattile al tap/click */
-.cliente-info-clickable:active {
-    background-color: var(--surface-night);
-}
-
-.cliente-info-clickable:active .cliente-nome {
-    color: var(--brand-lime);
-}
-
-/* Icona della matita */
-.edit-icon {
-    font-size: 0.95rem;
-    opacity: 0.5;
-    margin-left: 10px;
-    transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.cliente-info-clickable:active .edit-icon {
-    opacity: 1;
-    transform: scale(1.15);
-}
-
-.edit-hint {
-    font-size: 0.7rem;
-    color: #64748b;
-    margin-top: 2px;
-    display: inline-block;
-}
-
-/* Modal Overlay & Card Flat Dark */
+/* Modal Modifica */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -473,7 +144,216 @@ input::placeholder {
     flex: 1;
 }
 
-/* Contenitore e Chip Filtro Rapido Zona */
+/* Header Brandizzato */
+.app-header {
+    background-color: var(--surface-night);
+    border-bottom: 2px solid var(--brand-lime);
+    padding: 14px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-icon {
+    font-size: 1.4rem;
+    background-color: var(--bg-deep-night);
+    border: 1px solid var(--border-night);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    flex-shrink: 0;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-brand h1 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.header-brand h1 .highlight {
+    color: var(--brand-lime);
+}
+
+.header-subtitle {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 3px;
+}
+
+/* Layout & Cards */
+.app-container {
+    max-width: 500px;
+    margin: 16px auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card {
+    background: var(--surface-night);
+    border: 1px solid var(--border-night);
+    border-radius: var(--border-radius);
+    padding: 18px;
+    box-shadow: none;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* Spaziatura controllata per i titoli h2 */
+h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--brand-lime);
+    margin-bottom: 16px;
+}
+
+.card-header h2 {
+    margin-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-night);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+input:focus {
+    border-color: var(--brand-lime);
+}
+
+input::placeholder {
+    color: #475569;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.15s ease;
+}
+
+.btn-primary {
+    background-color: var(--brand-lime);
+    color: var(--brand-lime-text);
+}
+
+.btn-primary:active {
+    background-color: var(--brand-lime-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger-bg);
+    color: var(--danger-text);
+    border: 1px solid var(--danger-border);
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    width: auto;
+}
+
+.btn-danger:active {
+    background-color: var(--danger-hover-bg);
+    color: var(--danger-hover-text);
+}
+
+.btn-secondary {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-night);
+    text-align: center;
+}
+
+.btn-secondary:active {
+    background-color: var(--border-night);
+    color: var(--brand-lime);
+}
+
+.file-input-label {
+    display: block;
+    cursor: pointer;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-sort {
+    background-color: var(--bg-deep-night);
+    color: var(--brand-lime);
+    border: 1px solid var(--border-night);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.badge {
+    background-color: var(--bg-deep-night);
+    color: var(--brand-lime);
+    border: 1px solid var(--border-night);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Chips Filtro Zona */
 .chips-container {
     display: flex;
     gap: 8px;
@@ -481,12 +361,10 @@ input::placeholder {
     padding-bottom: 8px;
     margin-bottom: 12px;
     scrollbar-width: none;
-    /* Nasconde scrollbar su Firefox */
 }
 
 .chips-container::-webkit-scrollbar {
     display: none;
-    /* Nasconde scrollbar su Chrome/Safari/Edge */
 }
 
 .chip {
@@ -510,4 +388,80 @@ input::placeholder {
     background-color: var(--brand-lime);
     color: var(--brand-lime-text);
     border-color: var(--brand-lime);
+}
+
+/* Elenco Clienti */
+.clienti-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cliente-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-night);
+    border-radius: var(--border-radius);
+}
+
+.cliente-info-clickable {
+    flex-grow: 1;
+    cursor: pointer;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--border-radius);
+    transition: background-color 0.15s ease;
+}
+
+.cliente-info-clickable:active {
+    background-color: var(--surface-night);
+}
+
+.cliente-info-clickable:active .cliente-nome {
+    color: var(--brand-lime);
+}
+
+.cliente-nome {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.cliente-zona {
+    font-size: 0.85rem;
+    color: var(--brand-lime);
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.edit-icon {
+    font-size: 0.95rem;
+    opacity: 0.5;
+    margin-left: 10px;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.cliente-info-clickable:active .edit-icon {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 16px 0;
+    display: none;
+}
+
+.backup-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
