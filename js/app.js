@@ -406,13 +406,21 @@ function registraServiceWorker() {
 function gestisciEnterNuovo(event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        handleFormSubmit(event);
+        if (event.target.id === "nomeCliente") {
+            document.getElementById("zonaCliente").focus();
+        } else {
+            handleFormSubmit(event);
+        }
     }
 }
 
 function gestisciEnterEdit(event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        handleEditSubmit(event);
+        if (event.target.id === "editNomeCliente") {
+            document.getElementById("editZonaCliente").focus();
+        } else {
+            handleEditSubmit(event);
+        }
     }
 }
