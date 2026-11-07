@@ -17,7 +17,6 @@
     <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
     <!-- Modal Modifica Cliente (senza tag form) -->
-    <!-- Modal Modifica Cliente -->
     <div id="modalEdit" class="modal-overlay" aria-hidden="true">
         <div class="modal-card">
             <div class="card-header">
@@ -27,15 +26,15 @@
             <div class="modal-form-body">
                 <div class="form-group">
                     <label for="editNomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="editNomeCliente" name="edit_c_name" placeholder="Nome cliente"
-                        enterkeyhint="next" autocomplete="off" autocorrect="off" autocapitalize="words"
-                        spellcheck="false" onkeydown="gestisciEnterEdit(event)">
+                    <input type="text" id="editNomeCliente" placeholder="Nome cliente" enterkeyhint="next"
+                        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
+                        onkeydown="gestisciEnterEdit(event)">
                 </div>
                 <div class="form-group">
                     <label for="editZonaCliente">Zona Consegna</label>
-                    <input type="text" id="editZonaCliente" name="edit_z_name" placeholder="Nome zona"
-                        enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="words"
-                        spellcheck="false" onkeydown="gestisciEnterEdit(event)">
+                    <input type="text" id="editZonaCliente" placeholder="Nome zona" enterkeyhint="done"
+                        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
+                        onkeydown="gestisciEnterEdit(event)">
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn btn-secondary" onclick="chiudiModifica()">Annulla</button>
@@ -45,7 +44,6 @@
             </div>
         </div>
     </div>
-
     <!-- Header Brandizzato -->
     <header class="app-header">
         <div class="header-brand">
@@ -59,20 +57,19 @@
 
     <main class="app-container">
         <!-- Scheda Nuovo Cliente (senza tag form) -->
-        <!-- Scheda Nuovo Cliente -->
         <section class="card" aria-labelledby="form-title">
             <h2 id="form-title">Nuovo Cliente</h2>
             <div class="form-body">
                 <div class="form-group">
                     <label for="nomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="nomeCliente" name="field_c_name" placeholder="Nome cliente"
-                        enterkeyhint="next" autocomplete="off" autocorrect="off" autocapitalize="words"
-                        spellcheck="false" onkeydown="gestisciEnterNuovo(event)">
+                    <input type="text" id="nomeCliente" placeholder="Nome cliente" enterkeyhint="next"
+                        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
+                        onkeydown="gestisciEnterNuovo(event)">
                 </div>
                 <div class="form-group">
                     <label for="zonaCliente">Zona Consegna</label>
-                    <input type="text" id="zonaCliente" name="field_z_name" placeholder="Nome zona" enterkeyhint="done"
-                        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
+                    <input type="text" id="zonaCliente" placeholder="Nome zona" enterkeyhint="done" autocomplete="off"
+                        autocorrect="off" autocapitalize="words" spellcheck="false"
                         onkeydown="gestisciEnterNuovo(event)">
                 </div>
                 <button type="button" class="btn btn-primary" onclick="handleFormSubmit(event)">Aggiungi
