@@ -1,15 +1,18 @@
 {
-  "name": "Registro Consegne",
-  "short_name": "Consegne",
+  "name": "Registro Clienti",
+  "short_name": "Clienti",
+  "description": "Gestione Clienti e Zone Consegna",
   "start_url": "./index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#0a0f1d",
   "theme_color": "#0a0f1d",
   "icons": [
     {
-      "src": "https://via.placeholder.com/192x192/0f172a/3b82f6?text=MAGAZZINO",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "icona.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
