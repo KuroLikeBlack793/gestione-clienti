@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0f1d">
+    <title>Registro Consegne</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Contenitore Notifiche Toast -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Modal Modifica Cliente -->
+    <div id="modalEdit" class="modal-overlay" aria-hidden="true">
+        <div class="modal-card">
+            <div class="card-header">
+                <h2>Modifica Cliente</h2>
+                <button type="button" class="btn-close" onclick="chiudiModifica()">✕</button>
+            </div>
+            <form id="editForm" onsubmit="handleEditSubmit(event)">
+                <div class="form-group">
+                    <label for="editNomeCliente">Azienda / Cliente</label>
+                    <input type="text" id="editNomeCliente" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="editZonaCliente">Zona Consegna</label>
+                    <input type="text" id="editZonaCliente" required autocomplete="off">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="chiudiModifica()">Annulla</button>
+                    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <header class="app-header">
+        <div class="header-brand">
+            <div class="header-icon" aria-hidden="true">📦</div>
+            <div class="header-text">
+                <h1>REGISTRO <span class="highlight">CONSEGNE</span></h1>
+                <span class="header-subtitle">Gestione Magazzino &amp; Zone</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- Form Inserimento -->
+        <section class="card" aria-labelledby="form-title">
+            <h2 id="form-title">Nuovo Cliente</h2>
+            <form id="clienteForm" onsubmit="handleFormSubmit(event)" novalidate>
+                <div class="form-group">
+                    <label for="nomeCliente">Azienda / Cliente</label>
+                    <input type="text" id="nomeCliente" placeholder="Es. Edilmarket" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="zonaCliente">Zona Consegna</label>
+                    <input type="text" id="zonaCliente" placeholder="Es. Roma 2" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary">Aggiungi Cliente</button>
+            </form>
+        </section>
+
+        <!-- Elenco Consegne (Sezione Unica con Ricerca, Chip e Lista) -->
+        <section class="card" aria-labelledby="list-title">
+            <div class="card-header">
+                <h2 id="list-title">Elenco Consegne</h2>
+                <div class="header-actions">
+                    <button type="button" id="btnSort" class="btn-sort" onclick="toggleOrdinamento()"
+                        aria-label="Inverti ordine">A ➔ Z</button>
+                    <span id="counter" class="badge">0 clienti</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="search" id="filtroRicerca" placeholder="Cerca cliente o zona..."
+                    oninput="filtrarClienti()">
+            </div>
+
+            <!-- Chip Filtro Rapido per Zona -->
+            <div id="chipsContainer" class="chips-container" role="tablist" aria-label="Filtra per zona"></div>
+
+            <ul id="listaClienti" class="clienti-list" role="list"></ul>
+            <p id="emptyState" class="empty-state">Nessun cliente in elenco.</p>
+        </section>
+
+        <!-- Gestione Dati e Backup -->
+        <section class="card" aria-labelledby="backup-title">
+            <h2 id="backup-title">Gestione Dati & Backup</h2>
+            <div class="backup-actions">
+                <button type="button" class="btn btn-secondary" onclick="esportaCSV()">📊 Esporta Foglio CSV
+                    (Excel)</button>
+                <button type="button" class="btn btn-secondary" onclick="esportaJSON()">💾 Scarica Backup JSON</button>
+                <label class="btn btn-secondary file-input-label">
+                    📥 Ripristina Backup JSON
+                    <input type="file" id="importJsonInput" accept=".json" onchange="importaJSON(event)" hidden>
+                </label>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

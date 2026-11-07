@@ -1,0 +1,15 @@
+{
+  "name": "Registro Consegne",
+  "short_name": "Consegne",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0f1d",
+  "theme_color": "#0a0f1d",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/0f172a/3b82f6?text=MAGAZZINO",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
