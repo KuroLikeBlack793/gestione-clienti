@@ -402,3 +402,17 @@ function registraServiceWorker() {
         });
     }
 }
+
+function gestisciEnterNuovo(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        handleFormSubmit(event);
+    }
+}
+
+function gestisciEnterEdit(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        handleEditSubmit(event);
+    }
+}

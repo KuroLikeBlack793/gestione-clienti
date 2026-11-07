@@ -6,7 +6,7 @@ const ASSETS = [
   "./css/style.css",
   "./js/app.js",
   "./manifest.json",
-  "./icon.svg"
+  "./icona.svg"
 ];
 
 // Installazione: memorizza la nuova cache

@@ -8,6 +8,7 @@
     <title>Registro Clienti</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="icona.svg" type="image/svg+xml">
 </head>
 
 <body>
@@ -15,31 +16,32 @@
     <!-- Contenitore Notifiche Toast -->
     <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
-    <!-- Modal Modifica Cliente -->
+    <!-- Modal Modifica Cliente (senza tag form) -->
     <div id="modalEdit" class="modal-overlay" aria-hidden="true">
         <div class="modal-card">
             <div class="card-header">
                 <h2>Modifica Cliente</h2>
                 <button type="button" class="btn-close" onclick="chiudiModifica()">✕</button>
             </div>
-            <form id="editForm" onsubmit="handleEditSubmit(event)" autocomplete="off">
+            <div class="modal-form-body">
                 <div class="form-group">
                     <label for="editNomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="editNomeCliente" name="edit_field_c_name" required readonly
-                        onfocus="this.removeAttribute('readonly');" autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false">
+                    <input type="search" id="editNomeCliente" placeholder="Nome cliente" autocomplete="off"
+                        autocorrect="off" autocapitalize="words" spellcheck="false"
+                        onkeydown="gestisciEnterEdit(event)">
                 </div>
                 <div class="form-group">
                     <label for="editZonaCliente">Zona Consegna</label>
-                    <input type="text" id="editZonaCliente" name="edit_field_z_name" required readonly
-                        onfocus="this.removeAttribute('readonly');" autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false">
+                    <input type="search" id="editZonaCliente" placeholder="Nome zona" autocomplete="off"
+                        autocorrect="off" autocapitalize="words" spellcheck="false"
+                        onkeydown="gestisciEnterEdit(event)">
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn btn-secondary" onclick="chiudiModifica()">Annulla</button>
-                    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+                    <button type="button" class="btn btn-primary" onclick="handleEditSubmit(event)">Salva
+                        Modifiche</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -55,24 +57,24 @@
     </header>
 
     <main class="app-container">
-        <!-- Form Inserimento -->
+        <!-- Scheda Nuovo Cliente (senza tag form) -->
         <section class="card" aria-labelledby="form-title">
             <h2 id="form-title">Nuovo Cliente</h2>
-            <form id="clienteForm" onsubmit="handleFormSubmit(event)" novalidate autocomplete="off">
+            <div class="form-body">
                 <div class="form-group">
                     <label for="nomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="nomeCliente" name="field_c_name" placeholder="Nome cliente" readonly
-                        onfocus="this.removeAttribute('readonly');" autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false">
+                    <input type="search" id="nomeCliente" placeholder="Nome cliente" autocomplete="off"
+                        autocorrect="off" autocapitalize="words" spellcheck="false"
+                        onkeydown="gestisciEnterNuovo(event)">
                 </div>
                 <div class="form-group">
                     <label for="zonaCliente">Zona Consegna</label>
-                    <input type="text" id="zonaCliente" name="field_z_name" placeholder="Nome zona" readonly
-                        onfocus="this.removeAttribute('readonly');" autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false">
+                    <input type="search" id="zonaCliente" placeholder="Nome zona" autocomplete="off" autocorrect="off"
+                        autocapitalize="words" spellcheck="false" onkeydown="gestisciEnterNuovo(event)">
                 </div>
-                <button type="submit" class="btn btn-primary">Aggiungi Cliente</button>
-            </form>
+                <button type="button" class="btn btn-primary" onclick="handleFormSubmit(event)">Aggiungi
+                    Cliente</button>
+            </div>
         </section>
 
         <!-- Elenco Consegne -->
