@@ -1,26 +1,42 @@
+/**
+ * ARCHITETTURA STILI - REGISTRO CLIENTE (FLAT DARK THEME)
+ * --------------------------------------------------------------------------
+ * Design system basato su variabili CSS personalizzate.
+ */
+
 :root {
+    /* Palette Colori Principale */
     --bg-deep-night: #0a0f1d;
     --surface-night: #141c2e;
     --border-night: #24304a;
     --input-bg: #090d1a;
+
+    /* Accent & Brand Colors */
     --brand-lime: #97c41e;
     --brand-lime-hover: #83ab17;
     --brand-lime-text: #0a0f1d;
+
+    /* Tipografia e Stati */
     --text-primary: #ffffff;
     --text-muted: #94a3b8;
+
+    /* Stati di Errore / Distruttivi */
     --danger-bg: #271217;
     --danger-border: #6b1d24;
     --danger-text: #f87171;
     --danger-hover-bg: #ef4444;
     --danger-hover-text: #ffffff;
+
+    /* Raggio dei bordi unificato */
     --border-radius: 8px;
 }
 
+/* Base Reset & Box Sizing */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -28,9 +44,16 @@ body {
     background-color: var(--bg-deep-night);
     color: var(--text-primary);
     padding-bottom: 24px;
+    line-height: 1.4;
 }
 
-/* Toast Notifiche Fluttuanti */
+/* Accessibility Focus States */
+:focus-visible {
+    outline: 2px solid var(--brand-lime);
+    outline-offset: 2px;
+}
+
+/* Toast Notifications */
 .toast-container {
     position: fixed;
     top: 16px;
@@ -81,14 +104,13 @@ body {
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Modal Modifica */
+/* Modal Window Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -130,6 +152,7 @@ body {
     padding: 4px;
 }
 
+.btn-close:hover,
 .btn-close:active {
     color: var(--text-primary);
 }
@@ -144,7 +167,7 @@ body {
     flex: 1;
 }
 
-/* Header Brandizzato */
+/* Header Component */
 .app-header {
     background-color: var(--surface-night);
     border-bottom: 2px solid var(--brand-lime);
@@ -200,7 +223,7 @@ body {
     margin-top: 3px;
 }
 
-/* Layout & Cards */
+/* Layout Container & Cards */
 .app-container {
     max-width: 500px;
     margin: 16px auto;
@@ -215,7 +238,6 @@ body {
     border: 1px solid var(--border-night);
     border-radius: var(--border-radius);
     padding: 18px;
-    box-shadow: none;
 }
 
 .card-header {
@@ -225,7 +247,6 @@ body {
     margin-bottom: 16px;
 }
 
-/* Spaziatura controllata per i titoli h2 */
 h2 {
     font-size: 0.95rem;
     font-weight: 700;
@@ -272,7 +293,7 @@ input::placeholder {
     color: #475569;
 }
 
-/* Buttons */
+/* Buttons System */
 .btn {
     width: 100%;
     padding: 12px;
@@ -283,7 +304,11 @@ input::placeholder {
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    transition: background-color 0.15s ease;
+    transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+    transform: scale(0.99);
 }
 
 .btn-primary {
@@ -291,6 +316,7 @@ input::placeholder {
     color: var(--brand-lime-text);
 }
 
+.btn-primary:hover,
 .btn-primary:active {
     background-color: var(--brand-lime-hover);
 }
@@ -304,6 +330,7 @@ input::placeholder {
     width: auto;
 }
 
+.btn-danger:hover,
 .btn-danger:active {
     background-color: var(--danger-hover-bg);
     color: var(--danger-hover-text);
@@ -316,6 +343,7 @@ input::placeholder {
     text-align: center;
 }
 
+.btn-secondary:hover,
 .btn-secondary:active {
     background-color: var(--border-night);
     color: var(--brand-lime);
@@ -326,6 +354,7 @@ input::placeholder {
     cursor: pointer;
 }
 
+/* Badges & Sorting Controls */
 .header-actions {
     display: flex;
     align-items: center;
@@ -353,7 +382,7 @@ input::placeholder {
     font-weight: 700;
 }
 
-/* Chips Filtro Zona */
+/* Dynamic Chips (Filter by Zone) */
 .chips-container {
     display: flex;
     gap: 8px;
@@ -380,17 +409,13 @@ input::placeholder {
     transition: all 0.15s ease;
 }
 
-.chip:active {
-    transform: scale(0.95);
-}
-
 .chip.active {
     background-color: var(--brand-lime);
     color: var(--brand-lime-text);
     border-color: var(--brand-lime);
 }
 
-/* Elenco Clienti */
+/* Client List Components */
 .clienti-list {
     list-style: none;
     display: flex;
@@ -423,10 +448,6 @@ input::placeholder {
     background-color: var(--surface-night);
 }
 
-.cliente-info-clickable:active .cliente-nome {
-    color: var(--brand-lime);
-}
-
 .cliente-nome {
     font-weight: 700;
     font-size: 1.05rem;
@@ -444,12 +465,11 @@ input::placeholder {
     font-size: 0.95rem;
     opacity: 0.5;
     margin-left: 10px;
-    transition: opacity 0.15s ease, transform 0.15s ease;
+    transition: opacity 0.15s ease;
 }
 
-.cliente-info-clickable:active .edit-icon {
+.cliente-info-clickable:hover .edit-icon {
     opacity: 1;
-    transform: scale(1.15);
 }
 
 .empty-state {

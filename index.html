@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0a0f1d">
+    <meta name="description" content="Applicazione PWA per la gestione dei clienti e delle zone di consegna in magazzino.">
     <title>Registro Clienti</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
@@ -14,37 +15,33 @@
 <body>
 
     <!-- Contenitore Notifiche Toast -->
-    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Modal Modifica Cliente (senza tag form) -->
-    <div id="modalEdit" class="modal-overlay" aria-hidden="true">
+    <!-- Modal Modifica Cliente -->
+    <div id="modalEdit" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modalEditTitle">
         <div class="modal-card">
             <div class="card-header">
-                <h2>Modifica Cliente</h2>
-                <button type="button" class="btn-close" onclick="chiudiModifica()">✕</button>
+                <h2 id="modalEditTitle">Modifica Cliente</h2>
+                <button type="button" id="btnCloseModal" class="btn-close" aria-label="Chiudi finestra di modifica">✕</button>
             </div>
-            <div class="modal-form-body">
+            <form id="editForm" class="modal-form-body" novalidate>
                 <div class="form-group">
                     <label for="editNomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="editNomeCliente" placeholder="Nome cliente" enterkeyhint="next"
-                        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
-                        onkeydown="gestisciEnterEdit(event)">
+                    <input type="text" id="editNomeCliente" required autocomplete="off" placeholder="Nome cliente">
                 </div>
                 <div class="form-group">
                     <label for="editZonaCliente">Zona Consegna</label>
-                    <input type="text" id="editZonaCliente" placeholder="Nome zona" enterkeyhint="done"
-                        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
-                        onkeydown="gestisciEnterEdit(event)">
+                    <input type="text" id="editZonaCliente" required autocomplete="off" placeholder="Nome zona">
                 </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" onclick="chiudiModifica()">Annulla</button>
-                    <button type="button" class="btn btn-primary" onclick="handleEditSubmit(event)">Salva
-                        Modifiche</button>
+                    <button type="button" id="btnCancelEdit" class="btn btn-secondary">Annulla</button>
+                    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-    <!-- Header Brandizzato -->
+
+    <!-- Header Principale -->
     <header class="app-header">
         <div class="header-brand">
             <div class="header-icon" aria-hidden="true">📦</div>
@@ -56,41 +53,34 @@
     </header>
 
     <main class="app-container">
-        <!-- Scheda Nuovo Cliente (senza tag form) -->
+        <!-- Form Inserimento Nuovo Cliente -->
         <section class="card" aria-labelledby="form-title">
             <h2 id="form-title">Nuovo Cliente</h2>
-            <div class="form-body">
+            <form id="clienteForm" novalidate autocomplete="off">
                 <div class="form-group">
                     <label for="nomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="nomeCliente" placeholder="Nome cliente" enterkeyhint="next"
-                        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false"
-                        onkeydown="gestisciEnterNuovo(event)">
+                    <input type="text" id="nomeCliente" required placeholder="Nome cliente">
                 </div>
                 <div class="form-group">
                     <label for="zonaCliente">Zona Consegna</label>
-                    <input type="text" id="zonaCliente" placeholder="Nome zona" enterkeyhint="done" autocomplete="off"
-                        autocorrect="off" autocapitalize="words" spellcheck="false"
-                        onkeydown="gestisciEnterNuovo(event)">
+                    <input type="text" id="zonaCliente" required placeholder="Nome zona">
                 </div>
-                <button type="button" class="btn btn-primary" onclick="handleFormSubmit(event)">Aggiungi
-                    Cliente</button>
-            </div>
+                <button type="submit" class="btn btn-primary">Aggiungi Cliente</button>
+            </form>
         </section>
 
-        <!-- Elenco Consegne -->
+        <!-- Elenco Clienti e Filtraggio -->
         <section class="card" aria-labelledby="list-title">
             <div class="card-header">
-                <h2 id="list-title">Elenco Consegne</h2>
+                <h2 id="list-title">Elenco Clienti/Zone</h2>
                 <div class="header-actions">
-                    <button type="button" id="btnSort" class="btn-sort" onclick="toggleOrdinamento()"
-                        aria-label="Inverti ordine">A ➔ Z</button>
+                    <button type="button" id="btnSort" class="btn-sort" aria-label="Inverti ordine alfabetico">A ➔ Z</button>
                     <span id="counter" class="badge">0 clienti</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="search" id="filtroRicerca" placeholder="Cerca cliente o zona..." oninput="filtrarClienti()"
-                    autocomplete="off" autocorrect="off" spellcheck="false">
+                <input type="search" id="filtroRicerca" placeholder="Cerca cliente o zona..." autocomplete="off">
             </div>
 
             <div id="chipsContainer" class="chips-container" role="tablist" aria-label="Filtra per zona"></div>
@@ -99,16 +89,15 @@
             <p id="emptyState" class="empty-state">Nessun cliente in elenco.</p>
         </section>
 
-        <!-- Backup & Dati -->
+        <!-- Gestione Dati e Backup -->
         <section class="card" aria-labelledby="backup-title">
             <h2 id="backup-title">Gestione Dati &amp; Backup</h2>
             <div class="backup-actions">
-                <button type="button" class="btn btn-secondary" onclick="esportaCSV()">📊 Esporta Foglio CSV
-                    (Excel)</button>
-                <button type="button" class="btn btn-secondary" onclick="esportaJSON()">💾 Scarica Backup JSON</button>
+                <button type="button" id="btnExportCSV" class="btn btn-secondary">📊 Esporta Foglio CSV (Excel)</button>
+                <button type="button" id="btnExportJSON" class="btn btn-secondary">💾 Scarica Backup JSON</button>
                 <label class="btn btn-secondary file-input-label">
                     📥 Ripristina Backup JSON
-                    <input type="file" id="importJsonInput" accept=".json" onchange="importaJSON(event)" hidden>
+                    <input type="file" id="importJsonInput" accept=".json" hidden>
                 </label>
             </div>
         </section>
