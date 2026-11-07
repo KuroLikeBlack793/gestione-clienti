@@ -25,13 +25,13 @@
             <form id="editForm" onsubmit="handleEditSubmit(event)" autocomplete="off">
                 <div class="form-group">
                     <label for="editNomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="editNomeCliente" required autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false" data-lpignore="true">
+                    <input type="text" id="editNomeCliente" name="edit_no_autofill_cliente" required
+                        autocomplete="one-time-code" autocorrect="off" autocapitalize="words" spellcheck="false">
                 </div>
                 <div class="form-group">
                     <label for="editZonaCliente">Zona Consegna</label>
-                    <input type="text" id="editZonaCliente" required autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false" data-lpignore="true">
+                    <input type="text" id="editZonaCliente" name="edit_no_autofill_zona" required
+                        autocomplete="one-time-code" autocorrect="off" autocapitalize="words" spellcheck="false">
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn btn-secondary" onclick="chiudiModifica()">Annulla</button>
@@ -59,13 +59,13 @@
             <form id="clienteForm" onsubmit="handleFormSubmit(event)" novalidate autocomplete="off">
                 <div class="form-group">
                     <label for="nomeCliente">Azienda / Cliente</label>
-                    <input type="text" id="nomeCliente" placeholder="Nome cliente" autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false" data-lpignore="true">
+                    <input type="text" id="nomeCliente" name="no_autofill_cliente" placeholder="Nome cliente"
+                        autocomplete="one-time-code" autocorrect="off" autocapitalize="words" spellcheck="false">
                 </div>
                 <div class="form-group">
                     <label for="zonaCliente">Zona Consegna</label>
-                    <input type="text" id="zonaCliente" placeholder="Nome zona" autocomplete="off" autocorrect="off"
-                        autocapitalize="words" spellcheck="false" data-lpignore="true">
+                    <input type="text" id="zonaCliente" name="no_autofill_zona" placeholder="Nome zona"
+                        autocomplete="one-time-code" autocorrect="off" autocapitalize="words" spellcheck="false">
                 </div>
                 <button type="submit" class="btn btn-primary">Aggiungi Cliente</button>
             </form>
